@@ -27,11 +27,12 @@ function consultarApi(ciudad, pais) {
   const apiID = "18d43688e3100a877c9ef7f9d0c4c791";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${apiID}`;
 
-  limpiarHTML();
+  Spinner();
 
   fetch(url)
     .then((respuesta) => respuesta.json())
     .then((datos) => {
+      limpiarHTML();
       if (datos.cod === "404") {
         imprimirAlerta("Ciudad no encontrada");
         return;
@@ -125,4 +126,28 @@ function imprimirAlerta(mensaje) {
       alerta.remove();
     }, 3000);
   }
+}
+
+function Spinner() {
+  limpiarHTML();
+  const spinnerDiv = document.createElement("div");
+  spinnerDiv.classList.add("sk-fading-circle");
+  spinnerDiv.innerHTML = ` 
+  <div class="sk-circle1 sk-circle"></div>
+  <div class="sk-circle2 sk-circle"></div>
+  <div class="sk-circle3 sk-circle"></div>
+  <div class="sk-circle4 sk-circle"></div>
+  <div class="sk-circle5 sk-circle"></div>
+  <div class="sk-circle6 sk-circle"></div>
+  <div class="sk-circle7 sk-circle"></div>
+  <div class="sk-circle8 sk-circle"></div>
+  <div class="sk-circle9 sk-circle"></div>
+  <div class="sk-circle10 sk-circle"></div>
+  <div class="sk-circle11 sk-circle"></div>
+  <div class="sk-circle12 sk-circle"></div>
+ 
+  
+  `;
+
+  resultado.appendChild(spinnerDiv);
 }
